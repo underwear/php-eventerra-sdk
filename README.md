@@ -7,8 +7,8 @@ This is unofficial php SDK for working with eventerra.de API
 
     $eventerra = new \Eventerra\Eventerra([  
 	    'aid' => '123',
-	    'secret' => 'passw0rd']
-    );  
+	    'secret' => 'passw0rd'
+    ]);  
     
     $tours = $eventerra->getTours();  
     
