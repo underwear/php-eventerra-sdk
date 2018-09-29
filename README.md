@@ -1,6 +1,5 @@
 
 # php-eventerra-sdk  
-## About
 This is unofficial php SDK for working with eventerra.de API
 
 **Simple usage:**  
