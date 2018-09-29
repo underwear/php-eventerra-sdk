@@ -1,0 +1,27 @@
+{
+    "name": "underwear/php-eventerra-sdk",
+    "description": "Not official Eventerra API SDK for PHP",
+    "keywords": ["eventerra", "sdk"],
+    "type": "library",
+    "homepage": "https://github.com/underwear/php-eventerra-sdk",
+    "require": {
+        "php": "^5.4"
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "suggest": {
+        "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eventerra\\": "src/Eventerra/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Igor Filippov",
+            "email": "thisfil@ya.ru"
+        }
+    ]
+}
