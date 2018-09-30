@@ -6,10 +6,10 @@ This is unofficial php SDK for working with eventerra.de API
 - supports PSR-3 Logger (Monolog and etc.)
 - supports different http clients (Guzzle, Curl and etc.)
 
-### Prerequisites
+## Prerequisites
 - PHP 5.4 or later
 
-### Installation
+## Installation
 The PHP Eventerra SDK can be installed using Composer by running the following command:
   
 
@@ -23,7 +23,7 @@ PHP Eventerra SDK can ask you to require some more packages (if you don't use th
     
 That is it.
 
-### Simple usage:
+## Simple usage:
   
 
     $eventerra = new \Eventerra\Eventerra([  
@@ -35,7 +35,7 @@ That is it.
     
     print_r($tours);
 
-#### Available methods:
+### Available methods:
 - getTours(): EventerraTour[] 
 - getTour(int $id): EventerraTour|null
 - getConcertsForTour(int $tourId): EventerraConcert[] 
