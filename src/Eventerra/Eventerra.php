@@ -19,6 +19,7 @@ namespace Eventerra;
 
 use Eventerra\ApiActions\EventerraActionGetTours;
 use Eventerra\Exceptions\EventerraSDKException;
+use Psr\Log\LoggerInterface;
 
 class Eventerra {
 	/**
@@ -45,10 +46,11 @@ class Eventerra {
 	 * Eventerra constructor.
 	 *
 	 * @param array $config
+	 * @param LoggerInterface|null $logger
 	 *
 	 * @throws \Exception
 	 */
-	public function __construct(array $config = []) {
+	public function __construct(array $config = [], LoggerInterface $logger = null) {
 		if (!$config['aid']) {
 			throw new EventerraSDKException('Required "aid" key not supplied in config');
 		}
@@ -58,7 +60,7 @@ class Eventerra {
 
 		$this->app = new EventerraApp($config['aid'], $config['secret']);
 
-		$this->client = new EventerraClient();
+		$this->client = new EventerraClient($logger);
 	}
 
 	/**

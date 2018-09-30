@@ -185,14 +185,18 @@ class EventerraRequest {
 		return [];
 	}
 
+	public function getBody() {
+		return $this->getUrlEncodedBody();
+	}
+
 	/**
 	 * Returns the body of the request as URL-encoded.
 	 *
-	 * @return RequestBodyUrlEncoded
+	 * @return string
 	 */
 	public function getUrlEncodedBody() {
 		$params = $this->getPostParams();
-		return new RequestBodyUrlEncoded($params);
+		return http_build_query($params, null, '&');
 	}
 
 	/**
@@ -233,6 +237,7 @@ class EventerraRequest {
 	 */
 	public static function getDefaultHeaders() {
 		return [
+			'Content-Type' => 'application/x-www-form-urlencoded',
 			'User-Agent' => 'php-underwear-eventerra-sdk',
 			'Accept-Encoding' => '*',
 		];

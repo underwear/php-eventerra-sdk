@@ -22,7 +22,7 @@
  */
 
 if (version_compare(PHP_VERSION, '5.6.0', '<')) {
-	throw new Exception('The Facebook SDK requires PHP version 5.4 or higher.');
+	throw new Exception('The Eventerra SDK requires PHP version 5.4 or higher.');
 }
 
 

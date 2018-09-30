@@ -17,9 +17,14 @@
 
 namespace Eventerra;
 
-use Eventerra\HttpClients\EventerraHttpClientInterface;
 use Eventerra\Exceptions\EventerraSDKException;
-use Eventerra\HttpClients\HttpClientsFactory;
+use Http\Client\HttpClient as HttpClientInterface;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 class EventerraClient {
 
@@ -33,35 +38,63 @@ class EventerraClient {
 	 */
 	const DEFAULT_REQUEST_TIMEOUT = 60;
 
+	/**
+	 * @var HttpClient Http client handler
+	 */
 	protected $httpClientHandler;
+
+	/**
+	 * @var LoggerInterface PSR-3 Logger handler
+	 */
+	protected $loggerHandler;
 
 	/**
 	 * Instantiates a new EventerraClient object.
 	 *
-	 * @param EventerraHttpClientInterface|null $httpClientHandler
+	 * @param LoggerInterface|null     $loggerHandler
+	 * @param HttpClientInterface|null $httpClientHandler
 	 *
 	 * @throws \Exception
 	 */
-	public function __construct(EventerraHttpClientInterface $httpClientHandler = null) {
-		$this->httpClientHandler = $httpClientHandler ?: HttpClientsFactory::createHttpClient();
+	public function __construct(LoggerInterface $loggerHandler = null, HttpClientInterface $httpClientHandler = null) {
+		$this->loggerHandler = $loggerHandler ?: new NullLogger();
+		$this->httpClientHandler = $httpClientHandler ?: HttpClientDiscovery::find();
 	}
 
 	/**
 	 * Sets the HTTP client handler.
 	 *
-	 * @param EventerraHttpClientInterface $httpClientHandler
+	 * @param HttpClientInterface $httpClientHandler
 	 */
-	public function setHttpClientHandler(EventerraHttpClientInterface $httpClientHandler) {
+	public function setHttpClientHandler(HttpClientInterface $httpClientHandler) {
 		$this->httpClientHandler = $httpClientHandler;
 	}
 
 	/**
 	 * Returns the HTTP client handler.
 	 *
-	 * @return EventerraHttpClientInterface
+	 * @return HttpClientInterface
 	 */
 	public function getHttpClientHandler() {
 		return $this->httpClientHandler;
+	}
+
+	/**
+	 * Sets the logger handler.
+	 *
+	 * @param LoggerInterface $loggerHandler
+	 */
+	public function setLoggerHandler($loggerHandler) {
+		$this->loggerHandler = $loggerHandler;
+	}
+
+	/**
+	 * Returns the logger handler.
+	 *
+	 * @return LoggerInterface
+	 */
+	public function getLoggerHandler() {
+		return $this->loggerHandler;
 	}
 
 	/**
@@ -74,57 +107,54 @@ class EventerraClient {
 	}
 
 	/**
-	 * Prepares the request for sending to the client handler.
-	 *
-	 * @param EventerraRequest $request
-	 *
-	 * @return array
-	 */
-	public function prepareRequestMessage(EventerraRequest $request) {
-		$url = $this->getBaseUrl();
-
-		$request->setHeaders([
-			'Content-Type' => 'application/x-www-form-urlencoded',
-		]);
-
-		return [
-			$url,
-			$request->getMethod(),
-			$request->getHeaders(),
-			$request->getUrlEncodedBody()->getBody()
-		];
-	}
-
-	/**
 	 * Makes the request to API and returns the result.
 	 *
-	 * @param EventerraRequest $request
+	 * @param EventerraRequest $eventerraRequest
 	 *
 	 * @return EventerraResponse
 	 *
-	 * @throws EventerraSDKException
+	 * @throws EventerraSDKException|\Http\Client\Exception|\Exception
 	 */
-	public function sendRequest(EventerraRequest $request) {
+	public function sendRequest(EventerraRequest $eventerraRequest) {
+		//todo needs refactoring
 
-		list($url, $method, $headers, $body) = $this->prepareRequestMessage($request);
+		$messageFactory = MessageFactoryDiscovery::find();
 
-
-		$timeOut = static::DEFAULT_REQUEST_TIMEOUT;
-
-		// Don't catch to allow it to bubble up.
-		$rawResponse = $this->httpClientHandler->send($url, $method, $body, $headers, $timeOut);
-
-		$returnResponse = new EventerraResponse(
-			$request,
-			$rawResponse->getBody(),
-			$rawResponse->getHttpResponseCode(),
-			$rawResponse->getHeaders()
+		$psr7Request = $messageFactory->createRequest(
+			$eventerraRequest->getMethod(),
+			$this->getBaseUrl(),
+			$eventerraRequest->getHeaders(),
+			$eventerraRequest->getBody()
 		);
 
-		if ($returnResponse->isError()) {
-			throw $returnResponse->getThrownException();
+		$psr7Response = $this->httpClientHandler->sendRequest($psr7Request);
+
+		$eventerraResponse = new EventerraResponse(
+			$eventerraRequest,
+			$psr7Response->getBody(),
+			$psr7Response->getStatusCode(),
+			$psr7Response->getHeaders()
+		);
+
+		$this->loggerHandler->debug("HTTP request to Eventerra API", [
+			'request' => [
+				'method' => $psr7Request->getMethod(),
+				'uri' => $psr7Request->getUri(),
+				'headers' => $psr7Request->getHeaders(),
+				'body' => $psr7Request->getBody()
+			],
+			'response' => [
+				'status_code' => $psr7Response->getStatusCode(),
+				'headers' => $psr7Response->getHeaders(),
+				'body' => $psr7Response->getBody()
+			],
+		]);
+
+		if ($eventerraResponse->isError()) {
+			throw $eventerraResponse->getThrownException();
 		}
 
-		return $returnResponse;
+		return $eventerraResponse;
 	}
+
 }

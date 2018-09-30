@@ -19,7 +19,6 @@ namespace Eventerra\ApiActions;
 
 
 use Eventerra\Entities\EventerraTour;
-use Eventerra\Eventerra;
 
 class EventerraActionGetTours extends EventerraActionBaseClass {
 
@@ -29,9 +28,11 @@ class EventerraActionGetTours extends EventerraActionBaseClass {
 	 * @return EventerraTour[]
 	 * @throws \Eventerra\Exceptions\EventerraSDKException
 	 */
-	public function request() {
+	public function request($tourId = null) {
+		$params = [];
+
 		$response = $this->eventerra
-			->post('get_tours')
+			->post('get_tours', $params)
 			->getDecodedBody();
 
 		$tours = [];
