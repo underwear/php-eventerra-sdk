@@ -12,10 +12,10 @@
         "php-http/message": "^1.0",
         "php-http/client-implementation": "^1.0",
         "php-http/guzzle6-adapter": "^1.1",
-        "php-http/discovery": "^1.4"
+        "php-http/discovery": "^1.4",
+        "guzzlehttp/guzzle": "^6"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "^6.0",
         "monolog/monolog": "^1.11"
     },
     "suggest": {

@@ -17,7 +17,7 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
     
 You can use any PSR-18 compatible http-client, but if you don't have one, let's require guzzle
     
-    composer require guzzlehttp/guzzle
+    composer require guzzlehttp/guzzle "^6.0"
     
 That is it.
 
