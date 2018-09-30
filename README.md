@@ -3,8 +3,8 @@ PHP Eventerra SDK
 
 This is unofficial php SDK for working with eventerra.de API
 
-- supports PSR-3 Logger (Monolog and etc.)
-- supports different http clients (Guzzle, Curl and etc.)
+- supports PSR-3 Loggers (Monolog and etc.)
+- supports different http clients (Guzzle, Curl and etc.) // PSR-18
 
 ## Prerequisites
 - PHP 5.4 or later
