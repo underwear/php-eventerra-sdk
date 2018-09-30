@@ -32,13 +32,15 @@ class EventerraActionOrder extends EventerraActionBaseClass {
 	/**
 	 * Create new order for places
 	 *
-	 * @param int              $id_concert
-	 * @param EventerraPlace[] $places
+	 * @param int   $concertId
+	 * @param array $places
 	 *
-	 * @return EventerraOrder|false
+	 * @return bool|EventerraOrder
 	 * @throws EventerraSDKException
+	 * @throws \Exception
+	 * @throws \Http\Client\Exception
 	 */
-	public function request($id_concert, Array $places) {
+	public function request($concertId, Array $places) {
 		$places = array_values($places); // Приводим к индексируемому массиву
 
 		$places_as_array = [];
@@ -57,23 +59,23 @@ class EventerraActionOrder extends EventerraActionBaseClass {
 
 		$result = $this->eventerra
 			->post('order', [
-				'id_concert' => $id_concert,
+				'id_concert' => $concertId,
 				'checked_places' => base64_encode(serialize($places_as_array))
 			])
 			->getDecodedBody();
 
-		if (isset($result->error)) {
+		if (isset($result['error'])) {
 			return false;
 		}
 
 		$result = current($result);
 
 		// Разбираем билеты
-		$order_items = [];
+		$orderItems = [];
 
-		$tickets = unserialize($result->order);
+		$tickets = unserialize($result['order']);
 		foreach ($tickets as $key => $item) {
-			$order_items[] = new EventerraOrderItem([
+			$orderItems[] = new EventerraOrderItem([
 				'block' => $item['block'],
 				'row' => $item['row'],
 				'place' => $item['place'],
@@ -82,10 +84,10 @@ class EventerraActionOrder extends EventerraActionBaseClass {
 		}
 
 		$order = new EventerraOrder([
-			'id' => $result->order_id,
-			'status' => trim($result->status),
-			'hash' => trim($result->hash),
-			'items' => $order_items
+			'id' => $result['order_id'],
+			'status' => trim($result['status']),
+			'hash' => trim($result['hash']),
+			'items' => $orderItems
 		]);
 
 		return $order;

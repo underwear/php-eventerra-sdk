@@ -61,18 +61,18 @@ class EventerraActionMyOrders extends EventerraActionBaseClass {
 			}
 
 			$orders[] = new EventerraOrder([
-					'id' => $item['order_id'],
-					'hash' => $item['hash'],
-					'addTime' => $item['add_time'],
-					'status' => $item['status'],
-					'concertId' => $item['id_concert'],
-					'ticketsAmount' => $item['tickets'],
-					'totalSum' => $item['total'],
-					'items' => $orderItems,
-					'linkPdfRechnung' => $item['link_pdf_rechnung'],
-					'linkPdfReserv' => $item['link_pdf_reservierungsbestätigung'],
-					'linkPdfTickets' => $item['link_pdf_tickets'],
-				]);
+				'id' => $item['order_id'],
+				'hash' => $item['hash'],
+				'addTime' => $item['add_time'],
+				'status' => $item['status'],
+				'concertId' => $item['id_concert'],
+				'ticketsAmount' => $item['tickets'],
+				'totalSum' => $item['total'],
+				'items' => $orderItems,
+				'linkPdfRechnung' => $item['link_pdf_rechnung'],
+				'linkPdfReserv' => $item['link_pdf_reservierungsbestätigung'],
+				'linkPdfTickets' => $item['link_pdf_tickets'],
+			]);
 		}
 
 		return $orders;
