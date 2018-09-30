@@ -22,6 +22,15 @@ use Eventerra\Entities\EventerraPlace;
 use Eventerra\Helpers\Arr;
 
 class EventerraActionGetFreePlaces extends EventerraActionBaseClass {
+
+	/**
+	 * Return free places for concert
+	 *
+	 * @param int $concertId Concert Id
+	 *
+	 * @return array
+	 * @throws \Eventerra\Exceptions\EventerraSDKException
+	 */
 	public function request($concertId) {
 		$params = [
 			'type' => 0,
