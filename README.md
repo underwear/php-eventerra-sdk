@@ -33,6 +33,8 @@ That is it.
     
     print_r($tours);
 
+See also [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
+
 ### Available methods:
 - getTours(): EventerraTour[] 
 - getTour(int $id): EventerraTour|null
@@ -50,6 +52,7 @@ According to the official documentation, these actions are unavailable at the cu
 
 
 ## Links
+[Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
 [Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
 
 ## License
