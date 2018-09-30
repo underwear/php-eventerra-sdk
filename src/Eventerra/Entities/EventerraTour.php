@@ -20,20 +20,24 @@ namespace Eventerra\Entities;
 /**
  * Class EventerraTour
  *
- * @property int    id
- * @property string nameRu        Tour's name in russian
- * @property string nameDe        Tour's name in german
- * @property string shortTextRu   Tour's short description in russian
- * @property string shortTextDe   Tour's short description in german
- * @property string fullTextRu    Tour's full description in russian
- * @property string fullTextDe    Tour's full description in german
- * @property int    dateStartUnix Tour's start date as unix timestamp
- * @property int    dateEndUnix   Tour's end date as unix timestamp
- * @property string photo         Tour's photo, http url
+ * @property int    $id
+ * @property string $nameRu        Tour's name in russian
+ * @property string $nameDe        Tour's name in german
+ * @property string $shortTextRu   Tour's short description in russian
+ * @property string $shortTextDe   Tour's short description in german
+ * @property string $fullTextRu    Tour's full description in russian
+ * @property string $fullTextDe    Tour's full description in german
+ * @property int    $dateStartUnix Tour's start date as unix timestamp
+ * @property int    $dateEndUnix   Tour's end date as unix timestamp
+ * @property string $photo         Tour's photo, http url
  *
  * @package Eventerra
  */
 class EventerraTour extends EventerraBaseEntity {
+
+	/**
+	 * @var array Allowed fields for the EventerraTour
+	 */
 	protected $fields = [
 		'id',
 		'nameRu',

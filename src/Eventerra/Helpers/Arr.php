@@ -17,15 +17,20 @@
 
 namespace Eventerra\Helpers;
 
+/**
+ * Class Arr
+ *
+ * @package Eventerra
+ */
 class Arr {
 
 	/**
 	 * Retrieve a single key from an array. If the key does not exist in the
-     * array, the default value will be returned instead.
+	 * array, the default value will be returned instead.
 	 *
-	 * @param      $array
-	 * @param      $key
-	 * @param null $default
+	 * @param array  $array
+	 * @param string $key
+	 * @param null   $default
 	 *
 	 * @return null
 	 */

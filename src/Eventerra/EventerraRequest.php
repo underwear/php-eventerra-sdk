@@ -185,6 +185,11 @@ class EventerraRequest {
 		return [];
 	}
 
+	/**
+	 * Alias for getUrlEncodedBody()
+	 *
+	 * @return string
+	 */
 	public function getBody() {
 		return $this->getUrlEncodedBody();
 	}
@@ -217,6 +222,8 @@ class EventerraRequest {
 	}
 
 	/**
+	 * Return the API action for request
+	 *
 	 * @return string
 	 */
 	public function getAction() {
@@ -224,6 +231,8 @@ class EventerraRequest {
 	}
 
 	/**
+	 * Set the API action for request
+	 *
 	 * @param string $action
 	 */
 	public function setAction($action) {

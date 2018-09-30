@@ -50,6 +50,13 @@ class EventerraResponseException extends EventerraSDKException {
 		parent::__construct($errorMessage, $errorCode, $previousException);
 	}
 
+	/**
+	 * A factory for creating the appropriate exception based on the response from API Eventerra
+	 *
+	 * @param EventerraResponse $response
+	 *
+	 * @return static
+	 */
 	public static function create(EventerraResponse $response) {
 		$data = $response->getDecodedBody();
 

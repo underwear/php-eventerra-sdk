@@ -26,10 +26,19 @@ use Eventerra\ApiActions\EventerraActionOrder;
 use Eventerra\Entities\EventerraConcert;
 use Eventerra\Entities\EventerraOrder;
 use Eventerra\Entities\EventerraPlace;
-use Eventerra\Exceptions\EventerraClientException;
 use Eventerra\Exceptions\EventerraSDKException;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class Eventerra
+ *
+ * Point of entrance for PHP Eventerra SDK
+ *
+ * You should make an instance of this class, passing 'aid' and 'secret' in the array
+ * as first argument in the constructor
+ *
+ * @package Eventerra
+ */
 class Eventerra {
 	/**
 	 * @const string Version number of the Eventerra PHP SDK.
@@ -231,7 +240,7 @@ class Eventerra {
 	 * @param $orderId
 	 *
 	 * @return EventerraOrder|null
-	 * @throws
+	 * @throws EventerraSDKException
 	 */
 	public function getOrder($orderId) {
 		$action = new EventerraActionMyOrders($this);

@@ -23,9 +23,21 @@ namespace Eventerra\Entities;
  * @package Eventerra
  */
 abstract class EventerraBaseEntity {
+	/**
+	 * @var array Allowed fields for the Entity
+	 */
 	protected $fields = [];
+
+	/**
+	 * @var array Values of fields
+	 */
 	protected $values = [];
 
+	/**
+	 * EventerraBaseEntity constructor.
+	 *
+	 * @param array $values Array with values for Entity fields
+	 */
 	public function __construct($values = []) {
 		foreach($values as $key => $value) {
 			$this->$key = $value;
@@ -33,6 +45,9 @@ abstract class EventerraBaseEntity {
 	}
 
 	/**
+	 * Magic method.
+	 * Get field with name $key
+	 *
 	 * @param string $key
 	 *
 	 * @return mixed|null
@@ -50,6 +65,9 @@ abstract class EventerraBaseEntity {
 	}
 
 	/**
+	 * Magic method.
+	 * Set field with name $key
+	 *
 	 * @param string key
 	 * @param mixed $value
 	 */

@@ -27,19 +27,19 @@ use Eventerra\Exceptions\EventerraResponseException;
  */
 class EventerraResponse {
 	/**
-	 * @var int The HTTP status code response from Graph.
+	 * @var int The HTTP status code response from API.
 	 */
 	protected $httpStatusCode;
 	/**
-	 * @var array The headers returned from Graph.
+	 * @var array The headers returned from API.
 	 */
 	protected $headers;
 	/**
-	 * @var string The raw body of the response from Graph.
+	 * @var string The raw body of the response from API.
 	 */
 	protected $body;
 	/**
-	 * @var array The decoded body of the Graph response.
+	 * @var array The decoded body of the API response.
 	 */
 	protected $decodedBody = [];
 	/**
@@ -122,7 +122,7 @@ class EventerraResponse {
 	}
 
 	/**
-	 * Returns true if Graph returned an error message.
+	 * Returns true if API returned an error message.
 	 *
 	 * @return boolean
 	 */

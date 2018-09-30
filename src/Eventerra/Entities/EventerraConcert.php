@@ -35,6 +35,9 @@ class EventerraConcert extends EventerraBaseEntity {
 	const STATUS_SELLING = 1;
 	const STATUS_COMING_SOON = 2;
 
+	/**
+	 * @var array Allowed fields for the EventerraConcert
+	 */
 	protected $fields = [
 		'id',
 		'status',

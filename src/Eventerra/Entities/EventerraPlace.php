@@ -20,16 +20,20 @@ namespace Eventerra\Entities;
 /**
  * Class EventerraPlace
  *
- * @property string block
- * @property string row
- * @property string place
- * @property float  price
- * @property int    x
- * @property int    y
+ * @property string $block
+ * @property string $row
+ * @property string $place
+ * @property float  $price
+ * @property int    $x
+ * @property int    $y
  *
  * @package Eventerra
  */
 class EventerraPlace extends EventerraBaseEntity {
+
+	/**
+	 * @var array Allowed fields for the EventerraPlace
+	 */
 	protected $fields = [
 		'block',
 		'row',

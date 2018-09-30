@@ -20,17 +20,17 @@ namespace Eventerra\Entities;
 /**
  * Class EventerraOrder
  *
- * @property int    id
- * @property string hash
- * @property int    addTime
- * @property int    status
- * @property int    concertId
- * @property int    ticketsAmount
- * @property float  totalSum
- * @property \Eventerra\Entities\EventerraOrderItem[] items
- * @property string linkPdfRechnung
- * @property string linkPdfReserv
- * @property string linkPdfTickets
+ * @property int                                      $id
+ * @property string                                   $hash
+ * @property int                                      $addTime
+ * @property int                                      $status
+ * @property int                                      $concertId
+ * @property int                                      $ticketsAmount
+ * @property float                                    $totalSum
+ * @property \Eventerra\Entities\EventerraOrderItem[] $items
+ * @property string                                   $linkPdfRechnung
+ * @property string                                   $linkPdfReserv
+ * @property string                                   $linkPdfTickets
  *
  * @package Eventerra
  */
@@ -42,6 +42,9 @@ class EventerraOrder extends EventerraBaseEntity {
 	const STATUS_CANCELED = 4;
 	const STATUS_TICKETS_SENT = 5;
 
+	/**
+	 * @var array Allowed fields for the EventerraOrder
+	 */
 	protected $fields = [
 		'id',
 		'hash',

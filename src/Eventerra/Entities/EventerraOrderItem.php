@@ -20,15 +20,19 @@ namespace Eventerra\Entities;
 /**
  * Class EventerraOrderItem
  *
- * @property string block
- * @property string row
- * @property int    place
- * @property float  price
- * @property string barcode
+ * @property string $block
+ * @property string $row
+ * @property int    $place
+ * @property float  $price
+ * @property string $barcode
  *
  * @package Eventerra
  */
 class EventerraOrderItem extends EventerraBaseEntity {
+
+	/**
+	 * @var array Allowed fields for the EventerraOrderItem
+	 */
 	protected $fields = [
 		'block',
 		'row',

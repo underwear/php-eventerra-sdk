@@ -26,8 +26,17 @@ use Eventerra\Eventerra;
  * @package Eventerra
  */
 abstract class EventerraActionBaseClass {
+
+	/**
+	 * @var Eventerra Instance of Eventerra class with your config
+	 */
 	protected $eventerra;
 
+	/**
+	 * EventerraActionBaseClass constructor.
+	 *
+	 * @param Eventerra $eventerra
+	 */
 	public function __construct(Eventerra $eventerra) {
 		$this->eventerra = $eventerra;
 	}

@@ -35,7 +35,10 @@ class EventerraApp implements \Serializable {
 	protected $secret;
 
 	/**
-	 * @param int $id
+	 * New instance of Eventerra App
+	 * Using id and secret, which are provided by Eventerra for every partner
+	 *
+	 * @param int    $id
 	 * @param string $secret
 	 */
 	public function __construct($id, $secret) {
