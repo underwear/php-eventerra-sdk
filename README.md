@@ -43,8 +43,8 @@ That is it.
 - getOrder(int $orderId): EventerraOrder|null
 - getAllOrders(): EventerraOrder[]
 
-##### Coming soon API actions:
-According to the official documentation, these actions are unavailable at the current moment
+#### Coming soon API actions:
+According to the official documentation, these actions are unavailable at the current moment:
 - lock_place
 - unlock_place
 
