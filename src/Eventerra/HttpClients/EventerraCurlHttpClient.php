@@ -41,13 +41,13 @@ class EventerraCurlHttpClient implements EventerraHttpClientInterface {
     /**
      * @var EventerraCurl Procedural curl as object
      */
-    protected $facebookCurl;
+    protected $eventerraCurl;
     /**
      * @param EventerraCurl|null Procedural curl as object
      */
-    public function __construct(EventerraCurl $facebookCurl = null)
+    public function __construct(EventerraCurl $eventerraCurl = null)
     {
-        $this->facebookCurl = $facebookCurl ?: new EventerraCurl();
+        $this->eventerraCurl = $eventerraCurl ?: new EventerraCurl();
     }
     /**
      * @inheritdoc
@@ -56,8 +56,8 @@ class EventerraCurlHttpClient implements EventerraHttpClientInterface {
     {
         $this->openConnection($url, $method, $body, $headers, $timeOut);
         $this->sendRequest();
-        if ($curlErrorCode = $this->facebookCurl->errno()) {
-            throw new EventerraSDKException($this->facebookCurl->error(), $curlErrorCode);
+        if ($curlErrorCode = $this->eventerraCurl->errno()) {
+            throw new EventerraSDKException($this->eventerraCurl->error(), $curlErrorCode);
         }
         // Separate the raw headers from the raw body
         list($rawHeaders, $rawBody) = $this->extractResponseHeadersAndBody();
@@ -89,22 +89,22 @@ class EventerraCurlHttpClient implements EventerraHttpClientInterface {
         if ($method !== "GET") {
             $options[CURLOPT_POSTFIELDS] = $body;
         }
-        $this->facebookCurl->init();
-        $this->facebookCurl->setoptArray($options);
+        $this->eventerraCurl->init();
+        $this->eventerraCurl->setoptArray($options);
     }
     /**
      * Closes an existing curl connection
      */
     public function closeConnection()
     {
-        $this->facebookCurl->close();
+        $this->eventerraCurl->close();
     }
     /**
      * Send the request and get the raw response from curl
      */
     public function sendRequest()
     {
-        $this->rawResponse = $this->facebookCurl->exec();
+        $this->rawResponse = $this->eventerraCurl->exec();
     }
     /**
      * Compiles the request headers into a curl-friendly format.
