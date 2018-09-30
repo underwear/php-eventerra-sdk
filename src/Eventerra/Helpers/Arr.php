@@ -15,46 +15,21 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-namespace Eventerra\Entities;
+namespace Eventerra\Helpers;
 
-/**
- * Class EventerraPlace
- *
- * @property int    id
- * @property string row
- * @property string place
- * @property float  price
- *
- * @package Eventerra
- */
-class EventerraPlace extends EventerraBaseEntity {
-	protected $fields = [
-		'block',
-		'row',
-		'place',
-		'price',
-		'x',
-		'y'
-	];
+class Arr {
 
 	/**
-	 * Sanitize value for X
-	 * @param $value
+	 * Retrieve a single key from an array. If the key does not exist in the
+     * array, the default value will be returned instead.
+	 *
+	 * @param      $array
+	 * @param      $key
+	 * @param null $default
 	 *
 	 * @return null
 	 */
-	protected function sanitizeX($value) {
-		return ctype_digit($value) ? $value : null;
-	}
-
-	/**
-	 * Sanitize value for Y
-	 *
-	 * @param $value
-	 *
-	 * @return null
-	 */
-	protected function sanitizeY($value) {
-		return ctype_digit($value) ? $value : null;
+	static public function get($array, $key, $default = null) {
+		return isset($array[$key]) ? $array[$key] : $default;
 	}
 }

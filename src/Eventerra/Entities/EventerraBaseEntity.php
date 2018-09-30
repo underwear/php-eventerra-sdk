@@ -60,7 +60,7 @@ abstract class EventerraBaseEntity {
 
 		$sanitizeFunc = 'sanitize' . ucfirst($key);
 		if(method_exists($this, $sanitizeFunc)) {
-			$value = $sanitizeFunc($value);
+			$value = $this->$sanitizeFunc($value);
 		}
 
 		$this->values[$key] = $value;

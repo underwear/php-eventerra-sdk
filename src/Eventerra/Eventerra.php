@@ -18,6 +18,7 @@
 namespace Eventerra;
 
 use Eventerra\ApiActions\EventerraActionGetConcertsForTour;
+use Eventerra\ApiActions\EventerraActionGetFreePlaces;
 use Eventerra\ApiActions\EventerraActionGetTours;
 use Eventerra\Entities\EventerraConcert;
 use Eventerra\Exceptions\EventerraSDKException;
@@ -178,15 +179,12 @@ class Eventerra {
 	}
 
 	/**
-	 * @param int $tourId
-	 * @param int $concertId
+	 * Returns available places for selling for concert
 	 *
-	 * @return EventerraConcert|null
-	 * @throws EventerraSDKException
+	 * @param int $concertId Concert ID
 	 */
-	public function getConcert($tourId, $concertId) {
-		$action = new EventerraActionGetConcertsForTour($this);
-		$array = $action->request($tourId, $concertId);
-		return array_shift($array);
+	public function getFreePlacesForConcert($concertId) {
+		$action = new EventerraActionGetFreePlaces($this);
+		return $action->request($concertId);
 	}
 }
