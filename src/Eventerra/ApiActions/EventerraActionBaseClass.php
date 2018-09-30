@@ -20,12 +20,15 @@ namespace Eventerra\ApiActions;
 
 use Eventerra\Eventerra;
 
-abstract class EventerraActionBaseClass implements EventerraActionInterface {
+/**
+ * Class EventerraActionBaseClass
+ *
+ * @package Eventerra
+ */
+abstract class EventerraActionBaseClass {
 	protected $eventerra;
 
 	public function __construct(Eventerra $eventerra) {
 		$this->eventerra = $eventerra;
 	}
-
-	abstract public function request();
 }

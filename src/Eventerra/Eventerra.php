@@ -17,7 +17,9 @@
 
 namespace Eventerra;
 
+use Eventerra\ApiActions\EventerraActionGetConcertsForTour;
 use Eventerra\ApiActions\EventerraActionGetTours;
+use Eventerra\Entities\EventerraConcert;
 use Eventerra\Exceptions\EventerraSDKException;
 use Psr\Log\LoggerInterface;
 
@@ -45,9 +47,9 @@ class Eventerra {
 	/**
 	 * Eventerra constructor.
 	 *
-	 * @param $config array
-	 *      - int aid: Application ID
-	 *      - string secret: Secret-word for Application
+	 * @param                      $config array
+	 *                                     - int aid: Application ID
+	 *                                     - string secret: Secret-word for Application
 	 * @param LoggerInterface|null $logger
 	 *
 	 * @throws \Exception
@@ -90,15 +92,17 @@ class Eventerra {
 	 * Sends a request to Eventerra API and returns the result.
 	 *
 	 * @param string $method
-	 * @param string $endpoint
+	 * @param string $action
 	 * @param array  $params
 	 *
 	 * @return EventerraResponse
 	 *
 	 * @throws EventerraSDKException
+	 * @throws \Exception
+	 * @throws \Http\Client\Exception
 	 */
-	public function sendRequest($method, $endpoint, array $params = []) {
-		$request = $this->request($method, $endpoint, $params);
+	public function sendRequest($method, $action, array $params = []) {
+		$request = $this->request($method, $action, $params);
 		$response = $this->client->sendRequest($request);
 		$this->lastResponse = $response;
 		return $response;
@@ -151,13 +155,38 @@ class Eventerra {
 	 *
 	 * @param int $id Tour ID
 	 *
-	 * @return Entities\EventerraTour[]
+	 * @return Entities\EventerraTour|null
 	 * @throws EventerraSDKException
 	 */
 	public function getTour($id) {
 		$action = new EventerraActionGetTours($this);
-		return $action->request($id);
+		$array = $action->request($id);
+		return array_shift($array);
 	}
 
+	/**
+	 * Returns concerts for tour
+	 *
+	 * @param int $tourId
+	 *
+	 * @return EventerraConcert[]
+	 * @throws EventerraSDKException
+	 */
+	public function getConcertsForTour($tourId) {
+		$action = new EventerraActionGetConcertsForTour($this);
+		return $action->request($tourId);
+	}
 
+	/**
+	 * @param int $tourId
+	 * @param int $concertId
+	 *
+	 * @return EventerraConcert|null
+	 * @throws EventerraSDKException
+	 */
+	public function getConcert($tourId, $concertId) {
+		$action = new EventerraActionGetConcertsForTour($this);
+		$array = $action->request($tourId, $concertId);
+		return array_shift($array);
+	}
 }

@@ -36,8 +36,10 @@ class EventerraConcert extends EventerraBaseEntity {
 	protected $fields = [
 		'id',
 		'status',
-		'date_unix',
-		'city_name',
-		'hall_name'
+		'dateUnix',
+		'cityName',
+		'hallName',
+		'descriptionRu',
+		'descriptionDe'
 	];
 }

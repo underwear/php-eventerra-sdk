@@ -21,8 +21,6 @@ use Eventerra\Exceptions\EventerraSDKException;
 use Http\Client\HttpClient as HttpClientInterface;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -39,7 +37,7 @@ class EventerraClient {
 	const DEFAULT_REQUEST_TIMEOUT = 60;
 
 	/**
-	 * @var HttpClient Http client handler
+	 * @var HttpClientInterface Http client handler
 	 */
 	protected $httpClientHandler;
 

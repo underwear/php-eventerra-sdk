@@ -17,7 +17,9 @@ This is unofficial php SDK for working with eventerra.de API
 
 #### Available methods:
 - getTours(): EventerraTour[] 
-- getTour(int $id): EventerraTour
+- getTour(int $id): EventerraTour|null
+- getConcertsForTour(int $tourId): EventerraConcert[] 
+- getConcert(int $tourId, int $concertId): EventerraConcert|null
 ## Links
 [Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
 

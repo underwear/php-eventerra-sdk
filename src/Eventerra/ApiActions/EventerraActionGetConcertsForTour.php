@@ -16,53 +16,51 @@
  */
 
 namespace Eventerra\ApiActions;
-
-
-use Eventerra\Entities\EventerraTour;
+use Eventerra\Entities\EventerraConcert;
 
 /**
- * Class EventerraActionGetTours
+ * Class EventerraActionGetConcertsForTour
  *
  * @package Eventerra
  */
-class EventerraActionGetTours extends EventerraActionBaseClass {
+class EventerraActionGetConcertsForTour extends EventerraActionBaseClass {
 
 	/**
-	 * Return array of EventerraTours
+	 * Returns concerts for tour
 	 *
-	 * @param int $tourId You can get a particular tour your if you pass tour_id
+	 * @param int      $tourId
+	 * @param int|null $concertId
 	 *
-	 * @return EventerraTour[]
+	 * @return EventerraConcert[]
+	 *
 	 * @throws \Eventerra\Exceptions\EventerraSDKException
 	 */
-	public function request($tourId = null) {
-		$params = [];
+	public function request($tourId, $concertId = null) {
+		$params = [
+			'id_tour' => $tourId
+		];
 
-		if (!is_null($tourId)) {
-			$params['id_tour'] = $tourId;
+		if (!is_null($concertId)) {
+			$params['id_concert'] = $concertId;
 		}
 
 		$response = $this->eventerra
-			->post('get_tours', $params)
+			->post('get_concerts_for_tour', $params)
 			->getDecodedBody();
 
-		$tours = [];
+		$concerts = [];
 		foreach ($response as $item) {
-			$tours[] = new EventerraTour([
-				'id' => $item['id_tour'],
-				'nameRu' => $item['name'],
-				'nameDe' => $item['name_de'],
-				'photo' => $item['photo_1'],
-				'shortTextRu' => $item['short_text'],
-				'shortTextDe' => $item['short_text_de'],
-				'fullTextRu' => $item['full_text'],
-				'fullTextDe' => $item['full_text_de'],
-				'dateStartUnix' => $item['date_start_unix'],
-				'dateEndUnix' => $item['date_end_unix']
+			$concerts[] = new EventerraConcert([
+				'id' => $item['id_concert'],
+				'status' => $item['status'],
+				'dateUnix' => $item['date_unix'],
+				'cityName' => $item['city_name'],
+				'hallName' => $item['hall_name'],
+				'descriptionRu' => $item['description'],
+				'descriptionDe' => $item['description_de']
 			]);
 		}
 
-		return $tours;
+		return $concerts;
 	}
-
 }
