@@ -45,7 +45,9 @@ class Eventerra {
 	/**
 	 * Eventerra constructor.
 	 *
-	 * @param array $config
+	 * @param $config array
+	 *      - int aid: Application ID
+	 *      - string secret: Secret-word for Application
 	 * @param LoggerInterface|null $logger
 	 *
 	 * @throws \Exception
@@ -143,4 +145,19 @@ class Eventerra {
 		$action = new EventerraActionGetTours($this);
 		return $action->request();
 	}
+
+	/**
+	 * Returns tour by Id
+	 *
+	 * @param int $id Tour ID
+	 *
+	 * @return Entities\EventerraTour[]
+	 * @throws EventerraSDKException
+	 */
+	public function getTour($id) {
+		$action = new EventerraActionGetTours($this);
+		return $action->request($id);
+	}
+
+
 }

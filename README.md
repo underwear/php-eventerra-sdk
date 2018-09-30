@@ -3,7 +3,7 @@ PHP Eventerra SDK
 
 This is unofficial php SDK for working with eventerra.de API
 
-**Simple usage:**  
+#### Simple usage:
   
 
     $eventerra = new \Eventerra\Eventerra([  
@@ -15,6 +15,9 @@ This is unofficial php SDK for working with eventerra.de API
     
     print_r($tours);
 
+#### Available methods:
+- getTours(): EventerraTour[] 
+- getTour(int $id): EventerraTour
 ## Links
 [Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
 

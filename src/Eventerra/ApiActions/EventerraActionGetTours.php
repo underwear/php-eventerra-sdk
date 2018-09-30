@@ -25,11 +25,17 @@ class EventerraActionGetTours extends EventerraActionBaseClass {
 	/**
 	 * Return array of EventerraTours
 	 *
+	 * @param int $tourId You can get a particular tour your if you pass tour_id
+	 *
 	 * @return EventerraTour[]
 	 * @throws \Eventerra\Exceptions\EventerraSDKException
 	 */
 	public function request($tourId = null) {
 		$params = [];
+
+		if (!is_null($tourId)) {
+			$params['id_tour'] = $tourId;
+		}
 
 		$response = $this->eventerra
 			->post('get_tours', $params)
