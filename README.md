@@ -15,10 +15,8 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
 
     composer require underwear/php-eventerra-sdk
     
-PHP Eventerra SDK can ask you to require some more packages (if you don't use them or analogues in your project)
+You can use any PSR-18 compatible http-client, but if you don't have one, let's require guzzle
     
-    composer require php-http/message
-    composer require php-http/guzzle6-adapter
     composer require guzzlehttp/guzzle
     
 That is it.
@@ -40,6 +38,10 @@ That is it.
 - getTour(int $id): EventerraTour|null
 - getConcertsForTour(int $tourId): EventerraConcert[] 
 - getFreePlacesForConcert(int $concertId): EventerraPlace[]
+- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder
+- cancelOrder(int $orderId): bool
+- getOrder(int $orderId): EventerraOrder|null
+- getAllOrders(): EventerraOrder[]
 
 ## Links
 [Official Eventerra.de API documentation](https://eventerra.de/api/help.php)

@@ -17,10 +17,16 @@
 
 namespace Eventerra;
 
+use Eventerra\ApiActions\EventerraActionCancelOrder;
 use Eventerra\ApiActions\EventerraActionGetConcertsForTour;
 use Eventerra\ApiActions\EventerraActionGetFreePlaces;
 use Eventerra\ApiActions\EventerraActionGetTours;
+use Eventerra\ApiActions\EventerraActionMyOrders;
+use Eventerra\ApiActions\EventerraActionOrder;
 use Eventerra\Entities\EventerraConcert;
+use Eventerra\Entities\EventerraOrder;
+use Eventerra\Entities\EventerraPlace;
+use Eventerra\Exceptions\EventerraClientException;
 use Eventerra\Exceptions\EventerraSDKException;
 use Psr\Log\LoggerInterface;
 
@@ -125,8 +131,9 @@ class Eventerra {
 	 * @param array  $params
 	 *
 	 * @return EventerraResponse
-	 *
 	 * @throws EventerraSDKException
+	 * @throws \Exception
+	 * @throws \Http\Client\Exception
 	 */
 	public function post($action, array $params = []) {
 		return $this->sendRequest(
@@ -182,9 +189,73 @@ class Eventerra {
 	 * Returns available places for selling for concert
 	 *
 	 * @param int $concertId Concert ID
+	 *
+	 * @return EventerraPlace[]
+	 * @throws EventerraSDKException
 	 */
 	public function getFreePlacesForConcert($concertId) {
 		$action = new EventerraActionGetFreePlaces($this);
 		return $action->request($concertId);
+	}
+
+	/**
+	 * Make a new order for places
+	 *
+	 * @param int              $concertId
+	 * @param EventerraPlace[] $places
+	 *
+	 * @return EventerraOrder
+	 * @throws EventerraSDKException
+	 */
+	public function newOrder($concertId, $places) {
+		$action = new EventerraActionOrder($this);
+		return $action->request($concertId, $places);
+	}
+
+	/**
+	 * Cancel order by id
+	 *
+	 * @param int $orderId
+	 *
+	 * @return bool
+	 * @throws EventerraSDKException
+	 */
+	public function cancelOrder($orderId) {
+		$action = new EventerraActionCancelOrder($this);
+		return $action->request($orderId);
+	}
+
+	/**
+	 * Return info about order
+	 *
+	 * @param $orderId
+	 *
+	 * @return EventerraOrder|null
+	 * @throws
+	 */
+	public function getOrder($orderId) {
+		$action = new EventerraActionMyOrders($this);
+		try {
+			$array = $action->request($orderId);
+		} catch (\Eventerra\Exceptions\EventerraSDKException $exception) {
+			if ($exception->getCode() == 5) {
+				return null;
+			} else {
+				throw $exception;
+			}
+		}
+		return array_shift($array);
+	}
+
+
+	/**
+	 * Return all orders
+	 *
+	 * @return EventerraOrder[]
+	 * @throws EventerraSDKException
+	 */
+	public function getAllOrders() {
+		$action = new EventerraActionMyOrders($this);
+		return $action->request();
 	}
 }

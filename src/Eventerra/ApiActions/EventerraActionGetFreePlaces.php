@@ -21,6 +21,11 @@ namespace Eventerra\ApiActions;
 use Eventerra\Entities\EventerraPlace;
 use Eventerra\Helpers\Arr;
 
+/**
+ * Class EventerraActionGetFreePlaces
+ *
+ * @package Eventerra
+ */
 class EventerraActionGetFreePlaces extends EventerraActionBaseClass {
 
 	/**

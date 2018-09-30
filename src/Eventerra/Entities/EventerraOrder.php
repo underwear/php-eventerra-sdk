@@ -20,10 +20,17 @@ namespace Eventerra\Entities;
 /**
  * Class EventerraOrder
  *
- * @property int id
- * @property int status
+ * @property int    id
  * @property string hash
- * @property \Eventerra\Entities\EventerraOrderItem[]
+ * @property int    addTime
+ * @property int    status
+ * @property int    concertId
+ * @property int    ticketsAmount
+ * @property float  totalSum
+ * @property \Eventerra\Entities\EventerraOrderItem[] items
+ * @property string linkPdfRechnung
+ * @property string linkPdfReserv
+ * @property string linkPdfTickets
  *
  * @package Eventerra
  */
@@ -37,8 +44,15 @@ class EventerraOrder extends EventerraBaseEntity {
 
 	protected $fields = [
 		'id',
-		'status',
 		'hash',
-		'items'
+		'addTime',
+		'status',
+		'concertId',
+		'ticketsAmount',
+		'totalSum',
+		'items',
+		'linkPdfRechnung',
+		'linkPdfReserv',
+		'linkPdfTickets'
 	];
 }

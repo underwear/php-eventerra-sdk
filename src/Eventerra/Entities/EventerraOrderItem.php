@@ -23,6 +23,7 @@ namespace Eventerra\Entities;
  * @property string block
  * @property string row
  * @property int    place
+ * @property float  price
  * @property string barcode
  *
  * @package Eventerra
@@ -32,6 +33,7 @@ class EventerraOrderItem extends EventerraBaseEntity {
 		'block',
 		'row',
 		'place',
+		'price',
 		'barcode'
 	];
 }

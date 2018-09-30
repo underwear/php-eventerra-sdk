@@ -20,10 +20,12 @@ namespace Eventerra\Entities;
 /**
  * Class EventerraPlace
  *
- * @property int    id
+ * @property string block
  * @property string row
  * @property string place
  * @property float  price
+ * @property int    x
+ * @property int    y
  *
  * @package Eventerra
  */
@@ -39,6 +41,7 @@ class EventerraPlace extends EventerraBaseEntity {
 
 	/**
 	 * Sanitize value for X
+	 *
 	 * @param $value
 	 *
 	 * @return null

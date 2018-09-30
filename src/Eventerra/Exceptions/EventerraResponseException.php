@@ -45,8 +45,8 @@ class EventerraResponseException extends EventerraSDKException {
 	public function __construct(EventerraResponse $response, EventerraSDKException $previousException = null) {
 		$this->response = $response;
 		$this->responseData = $response->getDecodedBody();
-		$errorMessage = $this->get('error_text', 'Unknown error from Eventerra API');
-		$errorCode = $this->get('error', -1);
+		$errorMessage = $previousException->getMessage();
+		$errorCode = $previousException->getCode() ?: -1;
 		parent::__construct($errorMessage, $errorCode, $previousException);
 	}
 
@@ -82,6 +82,18 @@ class EventerraResponseException extends EventerraSDKException {
 		// Order doesn't exist
 		if ($code == 5 or $code == 10) {
 			$message = "Order doesn't exist";
+			return new static($response, new EventerraClientException($message, $code));
+		}
+
+		// Place doesn't exist or bad place's params
+		if ($code == 7) {
+			$message = "Place doesn't exist or bad place's params";
+			return new static($response, new EventerraClientException($message, $code));
+		}
+
+		// Place is unavailable
+		if ($code == 8) {
+			$message = "Place is unavailable";
 			return new static($response, new EventerraClientException($message, $code));
 		}
 

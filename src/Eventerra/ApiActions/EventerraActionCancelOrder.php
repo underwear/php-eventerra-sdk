@@ -15,33 +15,39 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-namespace Eventerra\Entities;
+namespace Eventerra\ApiActions;
+
+use Eventerra\Entities\EventerraOrder;
+use Eventerra\Entities\EventerraOrderItem;
+use Eventerra\Entities\EventerraPlace;
+use Eventerra\Exceptions\EventerraSDKException;
 
 /**
- * Class EventerraConcert
- *
- * @property int    id
- * @property int    status
- * @property int    dateUnix
- * @property string cityName
- * @property string hallName
- * @property string descriptionRu
- * @property string descriptionDe
+ * Class EventerraActionCancelOrder
  *
  * @package Eventerra
  */
-class EventerraConcert extends EventerraBaseEntity {
-	const STATUS_STOP_SELLING = 0;
-	const STATUS_SELLING = 1;
-	const STATUS_COMING_SOON = 2;
+class EventerraActionCancelOrder extends EventerraActionBaseClass {
 
-	protected $fields = [
-		'id',
-		'status',
-		'dateUnix',
-		'cityName',
-		'hallName',
-		'descriptionRu',
-		'descriptionDe'
-	];
+	/**
+	 * Cancel order by id
+	 *
+	 * @param int id_order
+	 *
+	 * @return bool
+	 * @throws EventerraSDKException
+	 */
+	public function request($orderId) {
+		$result = $this->eventerra
+			->post('cancel_order', [
+				'order_id' => $orderId
+			])
+			->getDecodedBody();
+
+		if (isset($result->error)) {
+			return false;
+		}
+
+		return true;
+	}
 }
