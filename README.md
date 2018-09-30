@@ -52,8 +52,8 @@ According to the official documentation, these actions are unavailable at the cu
 
 
 ## Links
-[Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
-[Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
+- [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
+- [Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
 
 ## License
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER  DEALINGS IN THE SOFTWARE.
