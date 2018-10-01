@@ -49,6 +49,8 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
     	'secret' => 'passw0rd'
 	]);  
 
+    $concertId = 210;
+
     $places = [];
     $places[] = new \Eventerra\Entities\EventerraPlace([
         	'block' => 'Rang Seite Links',
@@ -63,8 +65,8 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
         	'place' => 5,
         	'price' => 79.00
         ]);
-        
-    $order = $eventerra->newOrder(213, $places);
+    
+    $order = $eventerra->newOrder($concertId, $places);
     
     print_r($order);
 
