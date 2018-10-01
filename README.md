@@ -40,7 +40,7 @@ For more code examples you can see [Wiki / Code examples](https://github.com/und
 - getTour(int $id): EventerraTour|null
 - getConcertsForTour(int $tourId): EventerraConcert[] 
 - getFreePlacesForConcert(int $concertId): EventerraPlace[]
-- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder
+- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder  [example](https://github.com/underwear/php-eventerra-sdk/wiki/making-new-order-for-places)
 - cancelOrder(int $orderId): bool
 - getOrder(int $orderId): EventerraOrder|null
 - getAllOrders(): EventerraOrder[]
