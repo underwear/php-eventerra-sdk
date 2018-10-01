@@ -33,7 +33,7 @@ That is it.
     
     print_r($tours);
 
-See also [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
+For more code examples you can see [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki) page
 
 ### Available methods:
 - getTours(): EventerraTour[] 
