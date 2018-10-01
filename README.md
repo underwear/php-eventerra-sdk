@@ -31,6 +31,11 @@ Get tours:
 
 Create new order:
     
+    $eventerra = new \Eventerra\Eventerra([  
+    	'aid' => '123',
+    	'secret' => 'passw0rd'
+	]);  
+
     $places = [];
     $places[] = new \Eventerra\Entities\EventerraPlace([
         	'block' => 'Rang Seite Links',
