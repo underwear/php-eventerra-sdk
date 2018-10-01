@@ -15,7 +15,6 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
 
     composer require underwear/php-eventerra-sdk
     
-That is it.
 
 ## Simple usage:
   
