@@ -46,7 +46,8 @@ Create new order:
         	'price' => 79.00
         ]);
         
-    $result = $eventerra->newOrder(213, $places);
+    $order = $eventerra->newOrder(213, $places);
+    print_r($order);
 
 
 For more code examples you can see [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki) page
