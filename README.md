@@ -31,8 +31,9 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
         	'place' => 5,
         	'price' => 79.00
         ]);
+        
+        $result = $eventerra->newOrder(213, $places);
 
-$result = $eventerra->newOrder(213, $places);
 #### Get Tours
     $eventerra = new \Eventerra\Eventerra([  
 	    'aid' => '123',
