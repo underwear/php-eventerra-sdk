@@ -29,6 +29,19 @@ Get tours:
     
     print_r($tours);
 
+
+Get free places:
+    
+    $eventerra = new \Eventerra\Eventerra([  
+	    'aid' => '123',
+	    'secret' => 'passw0rd'
+    ]);  
+    
+    $places = $eventerra->getFreePlacesForConcert(77);
+    
+    print_r($places);
+
+
 Create new order:
     
     $eventerra = new \Eventerra\Eventerra([  
