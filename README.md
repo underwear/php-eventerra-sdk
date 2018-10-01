@@ -63,13 +63,12 @@ For more code examples you can see [Wiki / Code examples](https://github.com/und
 - getTour(int $id): EventerraTour|null
 - getConcertsForTour(int $tourId): EventerraConcert[] 
 - getFreePlacesForConcert(int $concertId): EventerraPlace[]
-- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder 
-- cancelOrder(int $orderId): bool
-- getOrder(int $orderId): EventerraOrder|null
-- getAllOrders(): EventerraOrder[]
 - lockPlace(int $concertId, EventerraPlace $place): bool
 - unlockPlace(int $concertId, EventerraPlace $place): bool
-
+- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder 
+- getOrder(int $orderId): EventerraOrder|null
+- cancelOrder(int $orderId): bool
+- getAllOrders(): EventerraOrder[]
 ## Documentation
 - [Making new order](https://github.com/underwear/php-eventerra-sdk/wiki/making-new-order-for-places)
 - [Other code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
