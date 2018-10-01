@@ -48,7 +48,7 @@ Create new order:
         
     $order = $eventerra->newOrder(213, $places);
     
-    print_r($order); // why not :)
+    print_r($order);
 
 
 For more code examples you can see [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki) page
