@@ -18,7 +18,7 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
 
 ## Simple usage:
 
-get tours:
+Get tours:
     
     $eventerra = new \Eventerra\Eventerra([  
 	    'aid' => '123',
@@ -29,7 +29,7 @@ get tours:
     
     print_r($tours);
 
-new order:
+Create new order:
     
     $places = [];
     $places[] = new \Eventerra\Entities\EventerraPlace([
