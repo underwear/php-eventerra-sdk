@@ -15,15 +15,11 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
 
     composer require underwear/php-eventerra-sdk
     
-You can use any PSR-18 compatible http-client, but if you don't have one, let's require guzzle
-    
-    composer require guzzlehttp/guzzle "^6.0"
-    
-That is it.
 
-## Simple usage:
-  
+## Basic usage:
 
+Get tours:
+    
     $eventerra = new \Eventerra\Eventerra([  
 	    'aid' => '123',
 	    'secret' => 'passw0rd'
@@ -33,12 +29,41 @@ That is it.
     
     print_r($tours);
 
+Create new order:
+    
+    $eventerra = new \Eventerra\Eventerra([  
+    	'aid' => '123',
+    	'secret' => 'passw0rd'
+	]);  
+
+    $places = [];
+    $places[] = new \Eventerra\Entities\EventerraPlace([
+        	'block' => 'Rang Seite Links',
+        	'row' => 2,
+        	'place' => 4,
+        	'price' => 79.00
+        ]);
+    
+    $places[] = new \Eventerra\Entities\EventerraPlace([
+        	'block' => 'Rang Seite Links',
+        	'row' => 2,
+        	'place' => 5,
+        	'price' => 79.00
+        ]);
+        
+    $order = $eventerra->newOrder(213, $places);
+    
+    print_r($order);
+
+
+For more code examples you can see [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki) page
+
 ### Available methods:
 - getTours(): EventerraTour[] 
 - getTour(int $id): EventerraTour|null
 - getConcertsForTour(int $tourId): EventerraConcert[] 
 - getFreePlacesForConcert(int $concertId): EventerraPlace[]
-- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder
+- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder 
 - cancelOrder(int $orderId): bool
 - getOrder(int $orderId): EventerraOrder|null
 - getAllOrders(): EventerraOrder[]
@@ -48,9 +73,12 @@ According to the official documentation, these actions are unavailable at the cu
 - lock_place
 - unlock_place
 
+## Documentation
+- [Making new order](https://github.com/underwear/php-eventerra-sdk/wiki/making-new-order-for-places)
+- [Other code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
 
 ## Links
-[Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
+- [Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
 
 ## License
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER  DEALINGS IN THE SOFTWARE.
