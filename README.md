@@ -67,11 +67,8 @@ For more code examples you can see [Wiki / Code examples](https://github.com/und
 - cancelOrder(int $orderId): bool
 - getOrder(int $orderId): EventerraOrder|null
 - getAllOrders(): EventerraOrder[]
-
-#### Coming soon API actions:
-According to the official documentation, these actions are unavailable at the current moment:
-- lock_place
-- unlock_place
+- lockPlace(int $concertId, EventerraPlace $place): bool
+- unlockPlace(int $concertId, EventerraPlace $place): bool
 
 ## Documentation
 - [Making new order](https://github.com/underwear/php-eventerra-sdk/wiki/making-new-order-for-places)
