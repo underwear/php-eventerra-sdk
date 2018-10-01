@@ -84,7 +84,7 @@ For more code examples you can see [Wiki / Code examples](https://github.com/und
 - getAllOrders(): EventerraOrder[]
 ## Documentation
 - [Making new order](https://github.com/underwear/php-eventerra-sdk/wiki/making-new-order-for-places)
-- [Implementing Logger](https://github.com/underwear/php-eventerra-sdk/wiki/adding-monolog-logger)
+- [Implementing Logger](https://github.com/underwear/php-eventerra-sdk/wiki/adding-logger)
 - [Other code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
 
 ## Links
