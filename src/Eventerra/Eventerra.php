@@ -21,8 +21,10 @@ use Eventerra\ApiActions\EventerraActionCancelOrder;
 use Eventerra\ApiActions\EventerraActionGetConcertsForTour;
 use Eventerra\ApiActions\EventerraActionGetFreePlaces;
 use Eventerra\ApiActions\EventerraActionGetTours;
+use Eventerra\ApiActions\EventerraActionLockPlace;
 use Eventerra\ApiActions\EventerraActionMyOrders;
 use Eventerra\ApiActions\EventerraActionOrder;
+use Eventerra\ApiActions\EventerraActionUnlockPlace;
 use Eventerra\Entities\EventerraConcert;
 use Eventerra\Entities\EventerraOrder;
 use Eventerra\Entities\EventerraPlace;
@@ -266,5 +268,37 @@ class Eventerra {
 	public function getAllOrders() {
 		$action = new EventerraActionMyOrders($this);
 		return $action->request();
+	}
+
+	/**
+	 * Lock (reserve) place for 30 min
+	 *
+	 * @param int            $concertId
+	 * @param EventerraPlace $place
+	 *
+	 * @return bool
+	 * @throws EventerraSDKException
+	 * @throws \Exception
+	 * @throws \Http\Client\Exception
+	 */
+	public function lockPlace($concertId, EventerraPlace $place) {
+		$action = new EventerraActionLockPlace($this);
+		return $action->request($concertId, $place);
+	}
+
+	/**
+	 * Unlock place form 30-min reserve
+	 *
+	 * @param int            $concertId
+	 * @param EventerraPlace $place
+	 *
+	 * @return bool
+	 * @throws EventerraSDKException
+	 * @throws \Exception
+	 * @throws \Http\Client\Exception
+	 */
+	public function unlockPlace($concertId, EventerraPlace $place) {
+		$action = new EventerraActionUnlockPlace($this);
+		return $action->request($concertId, $place);
 	}
 }
