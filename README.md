@@ -16,7 +16,7 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
     composer require underwear/php-eventerra-sdk
     
 
-## Simple usage:
+## Basic usage:
 
 Get tours:
     
@@ -63,7 +63,7 @@ For more code examples you can see [Wiki / Code examples](https://github.com/und
 - getTour(int $id): EventerraTour|null
 - getConcertsForTour(int $tourId): EventerraConcert[] 
 - getFreePlacesForConcert(int $concertId): EventerraPlace[]
-- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder [(example)](https://github.com/underwear/php-eventerra-sdk/wiki/making-new-order-for-places)
+- newOrder(int $concertId, EventerraPlace[] $places): EventerraOrder 
 - cancelOrder(int $orderId): bool
 - getOrder(int $orderId): EventerraOrder|null
 - getAllOrders(): EventerraOrder[]
@@ -73,9 +73,11 @@ According to the official documentation, these actions are unavailable at the cu
 - lock_place
 - unlock_place
 
+## Documentation
+- [Making new order](https://github.com/underwear/php-eventerra-sdk/wiki/making-new-order-for-places)
+- [Other code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
 
 ## Links
-- [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki)
 - [Official Eventerra.de API documentation](https://eventerra.de/api/help.php)
 
 ## License
