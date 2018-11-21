@@ -44,31 +44,41 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
 
 **Create new order:**
     
-    $eventerra = new \Eventerra\Eventerra([  
+    <?php
+    
+    // composer autoloader
+    require_once "vendor/autoload.php";
+    
+    $eventerra = new \Eventerra\Eventerra([
     	'aid' => '123',
-    	'secret' => 'passw0rd'
-	]);  
-
-    $concertId = 210;
+    	'secret' => 'pass!w0rd'
+    ]);
+    
+    $concertId = 99;
 
     $places = [];
     $places[] = new \Eventerra\Entities\EventerraPlace([
-        	'block' => 'Rang Seite Links',
-        	'row' => 2,
-        	'place' => 4,
-        	'price' => 79.00
-        ]);
-    
+    	'block' => 'Rang Seite Links',
+    	'row' => 2,
+    	'place' => 4,
+    	'price' => 79.00
+    ]);
     $places[] = new \Eventerra\Entities\EventerraPlace([
-        	'block' => 'Rang Seite Links',
-        	'row' => 2,
-        	'place' => 5,
-        	'price' => 79.00
-        ]);
+    	'block' => 'Rang Seite Links',
+    	'row' => 2,
+    	'place' => 5,
+    	'price' => 79.00
+    ]);
     
-    $order = $eventerra->newOrder($concertId, $places);
+    // this returns instance of Eventerra\Entities\EventerraOrder
+    $order = $eventerra->newOrder($concertId, $places); 
     
-    print_r($order);
+    // print_r($order);
+    // $order->totalSum;
+    // $order->status;
+    // $order->linkPdfTicket;
+    // $order->items; // instance of Eventerra\Entities\EventerraOrderItem
+    // $order->items[1]->barcode;
 
 
 For more code examples you can see [Wiki / Code examples](https://github.com/underwear/php-eventerra-sdk/wiki) page
