@@ -67,14 +67,14 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
     	'price' => 79.00
     ]);
     
-    // this returns instance of Eventerra\Entities\EventerraOrder
+    // this returns instance of \Eventerra\Entities\EventerraOrder
     $order = $eventerra->newOrder($concertId, $places); 
     
     // print_r($order);
     // $order->totalSum;
     // $order->status;
     // $order->linkPdfTicket;
-    // $order->items; // instance of Eventerra\Entities\EventerraOrderItem
+    // $order->items; // instance of \Eventerra\Entities\EventerraOrderItem
     // $order->items[1]->barcode;
 
 
