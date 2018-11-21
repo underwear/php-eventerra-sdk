@@ -45,10 +45,7 @@ The PHP Eventerra SDK can be installed using Composer by running the following c
 **Create new order:**
     
     <?php
-    
-    // composer autoloader
-    require_once "vendor/autoload.php";
-    
+
     $eventerra = new \Eventerra\Eventerra([
     	'aid' => '123',
     	'secret' => 'pass!w0rd'
