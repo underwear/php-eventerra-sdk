@@ -34,7 +34,7 @@ class EventerraClient {
 	/**
 	 * @const string Eventerra API URL.
 	 */
-	const BASE_URL = 'https://www.eventerra.de/api/api_cc.php';
+	const BASE_URL = 'https://www.eventerra-online.de/api/api_cc.php';
 
 	/**
 	 * @const int The timeout in seconds for a normal request.
